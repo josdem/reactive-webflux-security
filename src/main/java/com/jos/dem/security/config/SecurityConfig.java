@@ -1,6 +1,7 @@
 package com.jos.dem.security.EnableWebFluxSecurity;
 
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.authentication.UserDetailsRepository;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 
 @EnableWebFluxSecurity
@@ -18,13 +19,13 @@ public class SecurityConfig {
   }
 
   @Bean
-  public MapReactiveUserDetailsService userDetailsService() {
+  public UserDetailsRepository userDetailsRepository() {
     UserDetails user = User.withDefaultPasswordEncoder()
       .username("josdem")
       .password("12345678")
       .roles("USER")
       .build();
-    return new MapReactiveUserDetailsService(user);
+    return new UserDetailsRepository(user);
   }
 
 }
