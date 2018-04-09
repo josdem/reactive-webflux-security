@@ -24,8 +24,7 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-webflux')
-	compile('org.springframework.security:spring-security-config')
-	compile('org.springframework.security:spring-security-core')
+	compile('org.springframework.boot:spring-boot-starter-security')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('io.projectreactor:reactor-test')

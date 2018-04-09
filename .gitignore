@@ -1,4 +1,9 @@
 .gradle
-/build
+.classpath        
+.project
+.settings
+.vscode
+build/
+bin/
 **swp
 **swo
