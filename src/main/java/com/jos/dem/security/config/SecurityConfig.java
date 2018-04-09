@@ -13,7 +13,14 @@ public class SecurityConfig {
 
   @Bean
   public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-    http.authorizeExchange().anyExchange().authenticated().and().httpBasic().and().formLogin();
+    http
+      .authorizeExchange()
+      .anyExchange()
+      .authenticated()
+      .and()
+      .httpBasic()
+      .and()
+      .formLogin();
     return http.build();
   }
 
