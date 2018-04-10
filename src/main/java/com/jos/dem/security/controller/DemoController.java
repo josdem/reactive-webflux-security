@@ -16,8 +16,9 @@ public class DemoController {
 
   @GetMapping("/")
   public String index(Model model, Principal principal) {
-    log.info("Authenticated user is: " + principal.getName());
-    model.addAttribute("username", principal.getName());
+    String username = principal.getName();
+    log.info("Authenticated user is: " + username);
+    model.addAttribute("username", username);
     return "home";
   }
 
