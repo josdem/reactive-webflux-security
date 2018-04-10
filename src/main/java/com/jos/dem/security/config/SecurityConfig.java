@@ -1,15 +1,20 @@
 package com.jos.dem.security.config;
 
+import com.jos.dem.security.repository.UserRepository;
+
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
-import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @EnableWebFluxSecurity
 public class SecurityConfig {
+
+  @Autowired
+  private UserRepository userRepository;
 
   @Bean
   public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
@@ -25,13 +30,8 @@ public class SecurityConfig {
   }
 
   @Bean
-  public MapReactiveUserDetailsService userDetailsRepository() {
-    UserDetails user = User.withDefaultPasswordEncoder()
-      .username("josdem")
-      .password("12345678")
-      .roles("USER")
-      .build();
-    return new MapReactiveUserDetailsService(user);
+  public ReactiveUserDetailsService userDetailsService() {
+    return (username) -> userRepository .findByUsername(username).cast(UserDetails.class);
   }
 
 }
