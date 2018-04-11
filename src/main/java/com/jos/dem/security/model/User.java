@@ -21,10 +21,19 @@ public class User implements UserDetails {
   @Id
   private String uuid;
   private String username;
-  private String email;
+  private String password;
 
   @Builder.Default
   private boolean active = true;
+
+  @Builder.Default()
+  private String[] roles = {"ROLE_USER"};
+
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return AuthorityUtils.createAuthorityList(roles);
+  }
 
   @Override
   public boolean isAccountNonExpired() {
