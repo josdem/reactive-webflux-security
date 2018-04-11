@@ -30,10 +30,7 @@ public class DemoApplication {
     return args -> {
       userRepository.deleteAll().subscribe();
       
-      User user = new User();
-      user.setUuid(UUID.randomUUID().toString());
-      user.setUsername("josdem");
-      user.setPassword(passwordEncoder.encode("12345678"));
+      User user = new User(UUID.randomUUID().toString(), "josdem", passwordEncoder.encode("12345678"));
       userRepository.save(user).subscribe();      
 
       userRepository.findAll().log().subscribe(System.out::println);
