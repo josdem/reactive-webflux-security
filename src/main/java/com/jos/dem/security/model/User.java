@@ -1,18 +1,22 @@
 package com.jos.dem.security.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.Builder;
 
 @Document
 @AllArgsConstructor
@@ -27,15 +31,17 @@ public class User implements UserDetails {
   private String username;
   private String password;
 
-  @Builder.Default
+  @Builder.Default()
   private boolean active = true;
 
   @Builder.Default()
-  private String[] roles = { "ROLE_USER" };
+  private List<String> roles = new ArrayList<String>();
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return AuthorityUtils.createAuthorityList(roles);
+    Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
+    grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+    return grantedAuthorities;
   }
 
   @Override
