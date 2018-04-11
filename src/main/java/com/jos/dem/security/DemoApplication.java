@@ -1,7 +1,6 @@
 package com.jos.dem.security;
 
 import java.util.UUID;
-import java.util.Arrays;
 
 import com.jos.dem.security.repository.UserRepository;
 import com.jos.dem.security.model.User;
@@ -11,7 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -22,7 +21,7 @@ public class DemoApplication {
 
   @Bean
   PasswordEncoder passwordEncoder() {
-    return NoOpPasswordEncoder.getInstance();
+    return PasswordEncoderFactories.createDelegatingPasswordEncoder();
   }
   
   @Bean

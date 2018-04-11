@@ -1,9 +1,7 @@
 package com.jos.dem.security.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.annotation.Id;
@@ -12,17 +10,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Document
-@AllArgsConstructor
-@ToString
-@NoArgsConstructor
 @Data
+@Document
+@ToString
 public class User implements UserDetails {  
   
   @Id
