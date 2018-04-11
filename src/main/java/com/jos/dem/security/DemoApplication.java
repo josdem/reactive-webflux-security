@@ -34,8 +34,6 @@ public class DemoApplication {
       user.setUuid(UUID.randomUUID().toString());
       user.setUsername("josdem");
       user.setPassword(passwordEncoder.encode("12345678"));
-      user.setRoles(Arrays.asList("ROLE_USER"));
-      user.setActive(true);
       userRepository.save(user).subscribe();      
 
       userRepository.findAll().log().subscribe(System.out::println);

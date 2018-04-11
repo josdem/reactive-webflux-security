@@ -23,7 +23,6 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @Data
-@Builder
 public class User implements UserDetails {  
   
   @Id
@@ -31,17 +30,20 @@ public class User implements UserDetails {
   private String username;
   private String password;
 
-  @Builder.Default()
   private boolean active = true;
+  private Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
 
-  @Builder.Default()
-  private List<String> roles = new ArrayList<String>();
+  @Builder
+  public User(String uuid, String username, String password){
+    this.uuid = uuid;
+    this.username = username;
+    this.password = password;
+    roles.add(new SimpleGrantedAuthority("ROLE_USER"));
+  }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
-    grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-    return grantedAuthorities;
+    return roles;
   }
 
   @Override
