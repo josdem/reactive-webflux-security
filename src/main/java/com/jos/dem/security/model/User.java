@@ -1,5 +1,7 @@
 package com.jos.dem.security.model;
 
+import java.util.Collection;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,8 +20,8 @@ import lombok.Builder;
 @NoArgsConstructor
 @Data
 @Builder
-public class User implements UserDetails {
-
+public class User implements UserDetails {  
+  
   @Id
   private String uuid;
   private String username;
@@ -29,7 +31,7 @@ public class User implements UserDetails {
   private boolean active = true;
 
   @Builder.Default()
-  private String[] roles = {"ROLE_USER"};
+  private String[] roles = { "ROLE_USER" };
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -54,6 +56,16 @@ public class User implements UserDetails {
   @Override
   public boolean isEnabled() {
     return active;
+  }
+
+  @Override
+  public String getPassword() {
+    return this.password;
+  }
+
+  @Override
+  public String getUsername() {
+    return this.username;
   }
 
 }
