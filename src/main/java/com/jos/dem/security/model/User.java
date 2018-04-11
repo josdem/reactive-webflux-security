@@ -3,6 +3,8 @@ package com.jos.dem.security.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,7 +30,6 @@ public class User implements UserDetails {
 
   @Builder.Default()
   private String[] roles = {"ROLE_USER"};
-
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
