@@ -2,6 +2,8 @@ package com.jos.dem.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -24,7 +26,7 @@ public class SecurityConfig {
   }
 
   @Bean
-  public ReactiveUserDetailsService  userDetailsService() {
+  public MapReactiveUserDetailsService userDetailsService() {
     UserDetails user = User.withDefaultPasswordEncoder()
       .username("josdem")
       .password("12345678")
