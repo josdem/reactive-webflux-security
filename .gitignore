@@ -1,9 +1,10 @@
 .gradle
-.classpath        
+.classpath
 .project
 .settings
 .vscode
 build/
+target/
 bin/
 **swp
 **swo
