@@ -16,11 +16,9 @@ import lombok.ToString;
 
 @Data
 @Document
-@ToString
-public class User implements UserDetails {  
-  
+public class User implements UserDetails {
+
   @Id
-  private String uuid;
   private String username;
   private String password;
 
@@ -28,8 +26,7 @@ public class User implements UserDetails {
   private Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
 
   @Builder
-  public User(String uuid, String username, String password){
-    this.uuid = uuid;
+  public User(String username, String password){
     this.username = username;
     this.password = password;
     roles.add(new SimpleGrantedAuthority("ROLE_USER"));
