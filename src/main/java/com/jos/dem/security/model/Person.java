@@ -1,4 +1,4 @@
-package com.jos.dem.security.config;
+package com.jos.dem.security.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
