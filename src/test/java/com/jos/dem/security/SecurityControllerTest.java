@@ -28,6 +28,12 @@ class SecurityControllerTest {
   void shouldValidateForbidden() {
     data.add("username", "josdem");
     data.add("password", "password");
-    webTestClient.post().uri("/login").body(BodyInserters.fromFormData(data)).exchange().expectStatus().isForbidden();
+    webTestClient
+        .post()
+        .uri("/login")
+        .body(BodyInserters.fromFormData(data))
+        .exchange()
+        .expectStatus()
+        .isForbidden();
   }
 }

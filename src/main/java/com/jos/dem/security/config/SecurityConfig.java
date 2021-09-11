@@ -13,25 +13,18 @@ public class SecurityConfig {
 
   @Bean
   public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-    http
-      .authorizeExchange()
-      .anyExchange()
-      .authenticated()
-      .and()
-      .httpBasic()
-      .and()
-      .formLogin();
+    http.authorizeExchange().anyExchange().authenticated().and().httpBasic().and().formLogin();
     return http.build();
   }
 
   @Bean
   public MapReactiveUserDetailsService userDetailsService() {
-    UserDetails user = User.withDefaultPasswordEncoder()
-      .username("josdem")
-      .password("12345678")
-      .roles("USER")
-      .build();
+    UserDetails user =
+        User.withDefaultPasswordEncoder()
+            .username("josdem")
+            .password("12345678")
+            .roles("USER")
+            .build();
     return new MapReactiveUserDetailsService(user);
   }
-
 }
