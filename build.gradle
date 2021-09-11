@@ -1,13 +1,12 @@
 plugins {
   id 'org.springframework.boot' version '2.1.5.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
 }
 
-apply plugin: 'io.spring.dependency-management'
-
 group = 'com.jos.dem.security'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 11
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = 16
 
 repositories {
   mavenCentral()
@@ -19,4 +18,8 @@ dependencies {
   implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
   testImplementation('org.springframework.boot:spring-boot-starter-test')
   testImplementation('io.projectreactor:reactor-test')
+}
+
+test {
+  useJUnitPlatform()
 }
