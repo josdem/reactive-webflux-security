@@ -1,15 +1,12 @@
 package com.jos.dem.security.config;
 
-import org.springframework.context.annotation.Bean;
+import com.jos.dem.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-
-import com.jos.dem.security.repository.UserRepository;
 
 @EnableWebFluxSecurity
 public class SecurityConfig {
