@@ -18,4 +18,10 @@ class SecurityControllerTest {
   void shouldValidateUnauthorized() {
     webTestClient.get().uri("/").exchange().expectStatus().isUnauthorized();
   }
+
+  @Test
+  @DisplayName("User is forbidden")
+  void shouldValidateForbidden() {
+    webTestClient.post().uri("/login").bodyValue("{\"username\":\"josdem\", \"password\":\"12345678\"}").exchange().expectStatus().isForbidden();
+  }
 }
