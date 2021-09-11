@@ -6,12 +6,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.reactive.function.BodyInserters;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 class SecurityControllerTest {
 
   private final WebTestClient webTestClient;
+  private MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
 
   @Test
   @DisplayName("User is unauthorized")
@@ -22,6 +26,8 @@ class SecurityControllerTest {
   @Test
   @DisplayName("User is forbidden")
   void shouldValidateForbidden() {
-    webTestClient.post().uri("/login").bodyValue("{\"username\":\"josdem\", \"password\":\"12345678\"}").exchange().expectStatus().isForbidden();
+    data.add("username", "josdem");
+    data.add("password", "password");
+    webTestClient.post().uri("/login").body(BodyInserters.fromFormData(data)).exchange().expectStatus().isForbidden();
   }
 }
