@@ -1,5 +1,6 @@
 package com.jos.dem.security.config;
 
+import com.jos.dem.security.model.Roles;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -27,7 +28,7 @@ public class SecurityConfig {
         User.withDefaultPasswordEncoder()
             .username(config.getUsername())
             .password(config.getPassword())
-            .roles("USER")
+            .roles(Roles.USER.name())
             .build();
     return new MapReactiveUserDetailsService(user);
   }
