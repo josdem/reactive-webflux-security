@@ -3,8 +3,11 @@
 .project
 .settings
 .vscode
+gradlew
+gradlew.bat
 .idea/
 build/
+gradle/
 target/
 bin/
 **swp
