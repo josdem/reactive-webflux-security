@@ -1,4 +1,9 @@
 language: java
 jdk: openjdk16
+before_script:
+    - sleep 15
+    - mongo webflux_security --eval "db.createUser({user:'$MONGODB_USER',pwd:'$MONGODB_PASSWORD',roles:['readWrite']});"
+services:
+    - mongodb
 script:
     - ./gradlew -Dsonar.login=$SONAR_TOKEN jacocoTestReport sonarqube test
