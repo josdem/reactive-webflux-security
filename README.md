@@ -1,6 +1,7 @@
 Spring WebFlux Security
 ----------------------------
 
+[![Build Status](https://app.travis-ci.com/josdem/reactive-webflux-security.svg?branch=master)](https://app.travis-ci.com/josdem/reactive-webflux-security)
 [![Quality Gate Status](https://sonar.josdem.io/api/project_badges/measure?project=com.jos.dem.security%3Areactive-webflux-security&metric=alert_status)](https://sonar.josdem.io/dashboard?id=com.jos.dem.security%3Areactive-webflux-security)
 
 This project shows how to implement in-Memory and Database authentication in a [Spring Webflux](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html) project
