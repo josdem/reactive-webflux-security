@@ -5,11 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
 
 import java.security.Principal;
+
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class SecurityControllerTest {
 
@@ -26,7 +28,9 @@ class SecurityControllerTest {
   @Test
   @DisplayName("calling index")
   void shouldCallIndex() {
-    Mockito.when(principal.getName()).thenReturn("josdem");
+    String username = "josdem";
+    when(principal.getName()).thenReturn(username);
     securityController.index(model, principal);
+    verify(model).addAttribute("username", username);
   }
 }
