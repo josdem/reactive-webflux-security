@@ -1,3 +1,10 @@
 app:
   username: josdem
   password: 12345678
+spring:
+  data:
+    mongodb:
+      database: webflux_security
+      host: localhost
+      username: webfluxUser
+      password: w3bfluxDB
