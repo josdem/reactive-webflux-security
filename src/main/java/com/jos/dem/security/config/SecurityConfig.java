@@ -20,6 +20,7 @@ public class SecurityConfig {
     return http.build();
   }
 
+  @SuppressWarnings("deprecation")
   @Bean
   public ReactiveUserDetailsService userDetailsService() {
     return (username) -> userRepository.findByUsername(username);

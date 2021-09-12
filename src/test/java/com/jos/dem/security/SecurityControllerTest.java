@@ -1,39 +1,36 @@
 package com.jos.dem.security;
 
-import lombok.RequiredArgsConstructor;
+import com.jos.dem.security.controller.SecurityController;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.reactive.function.BodyInserters;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.ui.Model;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@RequiredArgsConstructor(onConstructor_ = @Autowired)
+import java.security.Principal;
+
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 class SecurityControllerTest {
 
-  private final WebTestClient webTestClient;
-  private MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
+  private SecurityController securityController = new SecurityController();
 
-  @Test
-  @DisplayName("User is unauthorized")
-  void shouldValidateUnauthorized() {
-    webTestClient.get().uri("/").exchange().expectStatus().isUnauthorized();
+  @Mock private Model model;
+  @Mock private Principal principal;
+
+  @BeforeEach
+  void setup() {
+    MockitoAnnotations.openMocks(this);
   }
 
   @Test
-  @DisplayName("User is forbidden")
-  void shouldValidateForbidden() {
-    data.add("username", "josdem");
-    data.add("password", "password");
-    webTestClient
-        .post()
-        .uri("/login")
-        .body(BodyInserters.fromFormData(data))
-        .exchange()
-        .expectStatus()
-        .isForbidden();
+  @DisplayName("calling index")
+  void shouldCallIndex() {
+    String username = "josdem";
+    when(principal.getName()).thenReturn(username);
+    securityController.index(model, principal);
+    verify(model).addAttribute("username", username);
   }
 }
