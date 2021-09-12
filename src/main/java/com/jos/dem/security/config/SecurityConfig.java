@@ -22,6 +22,7 @@ public class SecurityConfig {
     return http.build();
   }
 
+  @SuppressWarnings("deprecation")
   @Bean
   public MapReactiveUserDetailsService userDetailsService() {
     UserDetails user =
