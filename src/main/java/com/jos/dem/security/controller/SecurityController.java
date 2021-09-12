@@ -1,16 +1,15 @@
 package com.jos.dem.security.controller;
 
-import org.springframework.ui.Model;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Controller
-public class DemoController {
+public class SecurityController {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -21,5 +20,4 @@ public class DemoController {
     model.addAttribute("username", username);
     return "home";
   }
-
 }

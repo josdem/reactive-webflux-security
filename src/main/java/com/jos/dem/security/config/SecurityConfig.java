@@ -11,25 +11,16 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableWebFluxSecurity
 public class SecurityConfig {
 
-  @Autowired
-  private UserRepository userRepository;
+  @Autowired private UserRepository userRepository;
 
   @Bean
   public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-    http
-      .authorizeExchange()
-      .anyExchange()
-      .authenticated()
-      .and()
-      .httpBasic()
-      .and()
-      .formLogin();
+    http.authorizeExchange().anyExchange().authenticated().and().httpBasic().and().formLogin();
     return http.build();
   }
 
   @Bean
-  public ReactiveUserDetailsService  userDetailsService() {
+  public ReactiveUserDetailsService userDetailsService() {
     return (username) -> userRepository.findByUsername(username);
   }
-
 }
