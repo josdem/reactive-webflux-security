@@ -1,0 +1,4 @@
+language: java
+jdk: openjdk16
+script:
+    - ./gradlew -Dsonar.login=$SONAR_TOKEN jacocoTestReport sonarqube test
