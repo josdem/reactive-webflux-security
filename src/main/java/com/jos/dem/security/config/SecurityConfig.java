@@ -1,5 +1,6 @@
 package com.jos.dem.security.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -9,7 +10,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @EnableWebFluxSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+  private final ApplicationConfig config;
 
   @Bean
   public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
@@ -21,8 +25,8 @@ public class SecurityConfig {
   public MapReactiveUserDetailsService userDetailsService() {
     UserDetails user =
         User.withDefaultPasswordEncoder()
-            .username("josdem")
-            .password("12345678")
+            .username(config.getUsername())
+            .password(config.getPassword())
             .roles("USER")
             .build();
     return new MapReactiveUserDetailsService(user);
