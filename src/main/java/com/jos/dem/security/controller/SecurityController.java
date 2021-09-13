@@ -16,7 +16,7 @@ public class SecurityController {
   @GetMapping("/")
   public String index(Model model, Principal principal) {
     String username = principal.getName();
-    log.info("Authenticated user is: " + username);
+    log.info("Authenticated user is: {}", username);
     model.addAttribute("username", username);
     return "home";
   }
